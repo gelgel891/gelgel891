@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)file:///C:/Users/galal/Downloads/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82/pe.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Elevation Design Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e7e7e7;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>3D Elevation Design</h1>
+        <label for="name">Client Name:</label>
+        <input type="text" id="name" required="">
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" required="">
+
+        <label for="residentialArea">Residential Area:</label>
+        <input type="text" id="residentialArea" required="">
+
+        <label for="block">Block:</label>
+        <input type="text" id="block" required="">
+
+        <label for="houseNumber">House Number:</label>
+        <input type="text" id="houseNumber" required="">
+
+        <label for="elevationCount">Number of Elevations:</label>
+        <select id="elevationCount" required="">
+            <option value="">Select</option>
+            <option value="1">One Facade</option>
+            <option value="2">Two Facades</option>
+            <option value="3">Three Facades</option>
+            <option value="4">Four Facades</option>
+        </select>
+
+        <label for="elevationType">Elevation Type:</label>
+        <select id="elevationType" required="">
+            <option value="">Select</option>
+            <option value="mainStreet">Main Street</option>
+            <option value="servicesStreet">Services Street</option>
+            <option value="frontSquare">Front to Square</option>
+            <option value="neighbor">Front Overlooking Neighbor</option>
+            <option value="mainAndServices">Main &amp; Services Street</option>
+            <option value="allElevations">All Elevations</option>
+        </select>
+
+        <label for="designStyle">Design Style:</label>
+        <select id="designStyle" required="">
+            <option value="">Select</option>
+            <option value="modern">Modern</option>
+            <option value="classic">Classic</option>
+            <option value="neoclassical">Neoclassical</option>
+            <option value="islamic">Islamic</option>
+        </select>
+
+        <label for="materialType">Material Type:</label>
+        <select id="materialType" required="">
+            <option value="">Select</option>
+            <option value="stone">Alternative to Stone</option>
+            <option value="sigma">Sigma</option>
+            <option value="talvertine">Talvertine</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="doorMaterial">Main Door Material:</label>
+        <select id="doorMaterial" required="">
+            <option value="">Select</option>
+            <option value="wood">Wood</option>
+            <option value="iron">Iron</option>
+            <option value="glass">Glass Door</option>
+            <option value="stainlessSteel">Stainless Steel</option>
+        </select>
+
+        <label for="lightingType">Lighting Type:</label>
+        <select id="lightingType" required="">
+            <option value="">Select</option>
+            <option value="hidden">Hidden Lighting</option>
+            <option value="spotlight">Spotlight Lighting</option>
+            <option value="lamp">Lamp Lighting</option>
+            <option value="none">Without Lighting</option>
+        </select>
+
+        <label for="fenceType">Fence Type:</label>
+        <select id="fenceType" required="">
+            <option value="">Select</option>
+            <option value="brick">Brick</option>
+            <option value="iron">Iron Fence</option>
+            <option value="glass">Glass Fence</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="protrusionType">Protrusion Type:</label>
+        <select id="protrusionType" required="">
+            <option value="">Select</option>
+            <option value="brick">Brick</option>
+            <option value="concrete">Concrete</option>
+            <option value="mosaic">Mosaic</option>
+            <option value="mechanicalStone">Mechanical Stone</option>
+        </select>
+
+        <label for="stoneType">Type of Stone:</label>
+        <select id="stoneType">
+            <option value="">Select</option>
+            <option value="marble">Marble</option>
+            <option value="granite">Granite</option>
+            <option value="limestone">Limestone</option>
+            <option value="sandstone">Sandstone</option>
+            <option value="none">None</option>
+        </select>
+
+        <button id="submitBtn">Submit</button>
+
+        <div class="result" id="result" style="display:none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const location = document.getElementById('location').value;
+            const residentialArea = document.getElementById('residentialArea').value;
+            const block = document.getElementById('block').value;
+            const houseNumber = document.getElementById('houseNumber').value;
+            const elevationCount = document.getElementById('elevationCount').value;
+            const elevationType = document.getElementById('elevationType').value;
+            const designStyle = document.getElementById('designStyle').value;
+            const materialType = document.getElementById('materialType').value;
+            const doorMaterial = document.getElementById('doorMaterial').value;
+            const lightingType = document.getElementById('lightingType').value;
+            const fenceType = document.getElementById('fenceType').value;
+            const protrusionType = document.getElementById('protrusionType').value;
+            const stoneType = document.getElementById('stoneType').value;
+
+            const result = `
+                <h2>Client Information</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Location:</strong> ${location}</p>
+                <p><strong>Residential Area:</strong> ${residentialArea}</p>
+                <p><strong>Block:</strong> ${block}</p>
+                <p><strong>House Number:</strong> ${houseNumber}</p>
+                <p><strong>Number of Elevations:</strong> ${elevationCount}</p>
+                <p><strong>Elevation Type:</strong> ${elevationType}</p>
+                <p><strong>Design Style:</strong> ${designStyle}</p>
+                <p><strong>Material Type:</strong> ${materialType}</p>
+                <p><strong>Main Door Material:</strong> ${doorMaterial}</p>
+                <p><strong>Lighting Type:</strong> ${lightingType}</p>
+                <p><strong>Fence Type:</strong> ${fenceType}</p>
+                <p><strong>Protrusion Type:</strong> ${protrusionType}</p>
+                <p><strong>Type of Stone:</strong> ${stoneType}</p>
+            `;
+
+            document.getElementById('result').innerHTML = result;
+            document.getElementById('result').style.display = 'block';
+
+            // Clear inputs
+            document.querySelectorAll('input, select').forEach(input => {
+                input.value = '';
+            });
+        });
+    </script>
+
+</body></html>
